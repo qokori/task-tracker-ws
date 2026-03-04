@@ -1,27 +1,14 @@
-from pydantic_settings import BaseSettings, SettingsConfigDict
-from dotenv import load_dotenv
+from fastapi import FastAPI
+from db.core.config.settings import settings
 
-load_dotenv()
+app = FastAPI(title="Task Tracker", description='Лучший в мире Task Tracker ft.Abubakr', version='beta-test-0.1')
 
+if __name__ == '__main__':
+    import uvicorn
 
-class Settings(BaseSettings):
-    model_config = SettingsConfigDict(
-        env_file=".env",
-        env_file_encoding="utf-8",
-        extra="ignore",
+    uvicorn.run(
+        "main:app",
+        reload=settings.FASTAPI_RELOAD,
+        port=settings.FASTAPI_PORT,
+        host=settings.FASTAPI_HOST
     )
-
-    DATABASE_URL: str
-    DATABASE_ECHO: bool
-
-    SECRET_KEY: str
-    JWT_ALGORITHM: str
-
-    FASTAPI_HOST: str
-    FASTAPI_PORT: int
-    FASTAPI_RELOAD: bool
-
-
-
-settings = Settings()
-
