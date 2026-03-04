@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from db.core.config.settings import settings
 
-app = FastAPI(title="Task Tracker", description='Лучший в мире Task Tracker ft.Abubakr', version='beta-test-0.1')
+app = FastAPI(title="Task Tracker", description='Лучший в мире Task Tracker', version='beta-test-0.1')
 
 if __name__ == '__main__':
     import uvicorn
