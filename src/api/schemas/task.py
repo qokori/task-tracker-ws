@@ -1,34 +1,34 @@
-from typing import Sequence
+from collections.abc import Sequence
 from uuid import UUID
+
+from src.api.schemas.base import BaseSchema, DateTime, Pagination
+from src.api.schemas.user import UserResponseSchema
 from src.models.task import TaskStatus
-from pydantic import BaseModel
-
-from src.api.schemas.base import Pagination, DateTime
 
 
-class TaskCreate(BaseModel):
+class TaskCreateSchema(BaseSchema):
     title: str
     description: str
-    assignees: Sequence[UUID]
+    assignees: Sequence[UUID] = []
     status: TaskStatus
 
 
-class TaskUpdate(BaseModel):
+class TaskUpdateSchema(BaseSchema):
     title: str | None = None
     description: str | None = None
     assignees: Sequence[UUID] | None = None
-    status: TaskStatus | None = None
+    status: TaskStatus = TaskStatus.PENDING
 
 
-class TaskResponse(BaseModel):
+class TaskResponseSchema(BaseSchema):
     id: UUID
     title: str
     description: str
-    assignees: Sequence[UUID]
+    assignees: Sequence[UserResponseSchema]
     status: TaskStatus
     created_at: DateTime
     updated_at: DateTime
 
 
-class FetchListParams(Pagination):
+class TaskFetchListParamsSchema(Pagination):
     pass

@@ -1,38 +1,38 @@
 from uuid import UUID
 
-from pydantic import BaseModel, EmailStr
+from pydantic import EmailStr
 
-from src.api.schemas.base import DateTime
+from src.api.schemas.base import BaseSchema, DateTime
 
 
-class UserRegister(BaseModel):
+class UserRegisterSchema(BaseSchema):
     username: str
     email: EmailStr
     password: str
     display_name: str | None = None
 
 
-class UserLogin(BaseModel):
+class UserLoginSchema(BaseSchema):
     username: str
     password: str
 
 
-class UserResponseAccessToken(UserRegister):
+class UserResponseAccessToken(UserRegisterSchema):
     access_token: str
     user_id: UUID
 
 
-class UserUpdate(BaseModel):
+class UserUpdateSchema(BaseSchema):
     username: str | None = None
     password: str | None = None
     display_name: str | None = None
     email: EmailStr | None = None
 
 
-class UserResponse(BaseModel):
+class UserResponseSchema(BaseSchema):
     id: UUID
     username: str
     display_name: str | None = None
-    email: str
+    email: EmailStr
     created_at: DateTime
     updated_at: DateTime
