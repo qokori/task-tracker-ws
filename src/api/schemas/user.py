@@ -9,6 +9,7 @@ class UserRegister(BaseModel):
     username: str
     email: EmailStr
     password: str
+    display_name: str | None = None
 
 
 class UserLogin(BaseModel):
