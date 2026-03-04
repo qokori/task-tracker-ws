@@ -6,8 +6,9 @@ from pydantic import BaseModel, PlainSerializer
 DateTime = Annotated[
     datetime,
     PlainSerializer(
-        lambda value: value.strftime("%Y-%m-%d %H:%M:%S"), return_type=str
-    )
+        lambda value: value.strftime("%Y-%m-%d %H:%M:%S"),
+        return_type=str,
+    ),
 ]
 
 

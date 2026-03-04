@@ -1,26 +1,27 @@
-from typing import Sequence
+from collections.abc import Sequence
 from uuid import UUID
-from src.models.task import TaskStatus
+
 from pydantic import BaseModel
 
-from src.api.schemas.base import Pagination, DateTime
+from src.api.schemas.base import DateTime, Pagination
+from src.models.task import TaskStatus
 
 
-class TaskCreate(BaseModel):
+class TaskCreateSchema(BaseModel):
     title: str
     description: str
     assignees: Sequence[UUID]
     status: TaskStatus
 
 
-class TaskUpdate(BaseModel):
+class TaskUpdateSchema(BaseModel):
     title: str | None = None
     description: str | None = None
     assignees: Sequence[UUID] | None = None
     status: TaskStatus | None = None
 
 
-class TaskResponse(BaseModel):
+class TaskResponseSchema(BaseModel):
     id: UUID
     title: str
     description: str
@@ -30,5 +31,5 @@ class TaskResponse(BaseModel):
     updated_at: DateTime
 
 
-class FetchListParams(Pagination):
+class TaskFetchListParamsSchema(Pagination):
     pass

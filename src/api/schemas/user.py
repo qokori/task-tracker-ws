@@ -5,31 +5,31 @@ from pydantic import BaseModel, EmailStr
 from src.api.schemas.base import DateTime
 
 
-class UserRegister(BaseModel):
+class UserRegisterSchema(BaseModel):
     username: str
     email: EmailStr
     password: str
     display_name: str | None = None
 
 
-class UserLogin(BaseModel):
+class UserLoginSchema(BaseModel):
     username: str
     password: str
 
 
-class UserResponseAccessToken(UserRegister):
+class UserResponseAccessToken(UserRegisterSchema):
     access_token: str
     user_id: UUID
 
 
-class UserUpdate(BaseModel):
+class UserUpdateSchema(BaseModel):
     username: str | None = None
     password: str | None = None
     display_name: str | None = None
     email: EmailStr | None = None
 
 
-class UserResponse(BaseModel):
+class UserResponseSchema(BaseModel):
     id: UUID
     username: str
     display_name: str | None = None
