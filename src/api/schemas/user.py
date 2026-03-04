@@ -7,7 +7,7 @@ from pydantic import BaseModel, PlainSerializer, EmailStr
 DateTime = Annotated[
     datetime,
     PlainSerializer(
-        lambda value: value.strftime("%Y-%m-%d %H:%M:%S")
+        lambda value: value.strftime("%Y-%m-%d %H:%M:%S"), return_type=str
     )
 ]
 

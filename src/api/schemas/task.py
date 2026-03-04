@@ -9,7 +9,7 @@ from src.api.schemas.base import Pagination
 DateTime = Annotated[
     datetime,
     PlainSerializer(
-        lambda value: value.strftime("%Y-%m-%d %H:%M:%S")
+        lambda value: value.strftime("%Y-%m-%d %H:%M:%S"), return_type=str
     )
 ]
 
