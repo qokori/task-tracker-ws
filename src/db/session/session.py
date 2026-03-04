@@ -2,11 +2,11 @@ from collections.abc import AsyncGenerator
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.db.core.config.settings import settings
+from src.db.core.config.database import async_session_maker
 
 
 async def get_session() -> AsyncGenerator[AsyncSession | None]:
-    async with settings.async_session_maker() as session:
+    async with async_session_maker() as session:
         try:
             yield session
             await session.commit()
