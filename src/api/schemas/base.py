@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Annotated
 
-from pydantic import BaseModel, PlainSerializer
+from pydantic import BaseModel, ConfigDict, PlainSerializer
 
 DateTime = Annotated[
     datetime,
@@ -12,6 +12,10 @@ DateTime = Annotated[
 ]
 
 
-class Pagination(BaseModel):
+class BaseSchema(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+
+class Pagination(BaseSchema):
     offset: int | None = None
     limit: int | None = None
