@@ -1,4 +1,4 @@
-from sqlalchemy import Column, ForeignKey, Integer, String, Table
+from sqlalchemy import Column, ForeignKey, String, Table
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from src.models.base import BaseTable, TimeStampMixin, UUIDMixin
@@ -8,13 +8,11 @@ user_task_association = Table(
     BaseTable.metadata,
     Column(
         "user_id",
-        Integer,
         ForeignKey("users.id", ondelete="CASCADE"),
         primary_key=True,
     ),
     Column(
         "task_id",
-        Integer,
         ForeignKey("tasks.id", ondelete="CASCADE"),
         primary_key=True,
     ),
