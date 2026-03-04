@@ -12,3 +12,4 @@ if __name__ == '__main__':
         port=settings.FASTAPI_PORT,
         host=settings.FASTAPI_HOST
     )
+
