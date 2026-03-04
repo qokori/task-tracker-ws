@@ -17,7 +17,7 @@ class UserLoginSchema(BaseSchema):
     password: str
 
 
-class UserResponseAccessToken(UserRegisterSchema):
+class UserResponseAccessTokenSchema(UserRegisterSchema):
     access_token: str
     user_id: UUID
 

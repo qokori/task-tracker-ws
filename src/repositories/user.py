@@ -1,7 +1,7 @@
 from src.api.schemas.user import (
     UserLoginSchema,
     UserRegisterSchema,
-    UserResponseAccessToken,
+    UserResponseAccessTokenSchema,
     UserResponseSchema,
 )
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -44,7 +44,7 @@ class UserRepository:
 
     async def login(
         self, input_dto: UserLoginSchema, session: AsyncSession
-    ) -> UserResponseAccessToken:
+    ) -> UserResponseAccessTokenSchema:
         baby = (
             UserTable.email == input_dto.email
             if input_dto.email
@@ -55,4 +55,4 @@ class UserRepository:
         if not user or not verify_password(input_dto.password, user.hashed_password):
             raise DoesNotExists("Пользователя с такими данными не найден")
         token = create_access_token(subject=user.id, extra=dict(username=str(user.username)))
-        return UserResponseAccessToken(access_token=token, user_id=user.id)
+        return UserResponseAccessTokenSchema(access_token=token, user_id=user.id)
