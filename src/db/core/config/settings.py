@@ -1,4 +1,7 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 class Settings(BaseSettings):
@@ -19,4 +22,6 @@ class Settings(BaseSettings):
     FASTAPI_RELOAD: bool
 
 
+
 settings = Settings()
+
