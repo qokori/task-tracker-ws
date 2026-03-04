@@ -1,17 +1,8 @@
-from datetime import datetime
-from typing import Annotated
 from uuid import UUID
 
-from pydantic import BaseModel, PlainSerializer
+from pydantic import BaseModel
 
-from src.api.schemas.base import Pagination
-
-DateTime = Annotated[
-    datetime,
-    PlainSerializer(
-        lambda value: value.strftime("%Y-%m-%d %H:%M:%S"), return_type=str
-    )
-]
+from src.api.schemas.base import Pagination, DateTime
 
 
 class TaskCreate(BaseModel):

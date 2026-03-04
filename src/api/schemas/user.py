@@ -1,15 +1,8 @@
-from datetime import datetime
-from typing import Annotated
 from uuid import UUID
 
-from pydantic import BaseModel, PlainSerializer, EmailStr
+from pydantic import BaseModel, EmailStr
 
-DateTime = Annotated[
-    datetime,
-    PlainSerializer(
-        lambda value: value.strftime("%Y-%m-%d %H:%M:%S"), return_type=str
-    )
-]
+from src.api.schemas.base import DateTime
 
 
 class UserRegister(BaseModel):
